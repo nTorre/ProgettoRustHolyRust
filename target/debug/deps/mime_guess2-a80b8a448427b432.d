@@ -1,0 +1,12 @@
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/mime_guess2-a80b8a448427b432.rmeta: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/impl_bin_search.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/mime_types.rs /Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/build/mime_guess2-4daa438b6eab4e17/out/mime_types_generated.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/libmime_guess2-a80b8a448427b432.rlib: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/impl_bin_search.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/mime_types.rs /Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/build/mime_guess2-4daa438b6eab4e17/out/mime_types_generated.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/mime_guess2-a80b8a448427b432.d: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/impl_bin_search.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/mime_types.rs /Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/build/mime_guess2-4daa438b6eab4e17/out/mime_types_generated.rs
+
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/lib.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/impl_bin_search.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mime_guess2-2.0.5/src/mime_types.rs:
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/build/mime_guess2-4daa438b6eab4e17/out/mime_types_generated.rs:
+
+# env-dep:MIME_TYPES_GENERATED_PATH=/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/build/mime_guess2-4daa438b6eab4e17/out/mime_types_generated.rs

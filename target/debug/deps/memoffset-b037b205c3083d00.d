@@ -1,0 +1,10 @@
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/memoffset-b037b205c3083d00.rmeta: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/raw_field.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/offset_of.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/span_of.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/libmemoffset-b037b205c3083d00.rlib: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/raw_field.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/offset_of.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/span_of.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/memoffset-b037b205c3083d00.d: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/raw_field.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/offset_of.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/span_of.rs
+
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/lib.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/raw_field.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/offset_of.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memoffset-0.7.1/src/span_of.rs:

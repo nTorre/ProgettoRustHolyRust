@@ -1,0 +1,10 @@
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/idna-b2e0d138ec3ae56d.rmeta: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/punycode.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46_mapping_table.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/libidna-b2e0d138ec3ae56d.rlib: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/punycode.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46_mapping_table.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/idna-b2e0d138ec3ae56d.d: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/punycode.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46_mapping_table.rs
+
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/lib.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/punycode.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.5.0/src/uts46_mapping_table.rs:

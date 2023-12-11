@@ -1,0 +1,10 @@
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/unicase-b62bc0223ebf6169.rmeta: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/ascii.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/map.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/libunicase-b62bc0223ebf6169.rlib: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/ascii.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/map.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/deps/unicase-b62bc0223ebf6169.d: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/ascii.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/map.rs
+
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/lib.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/ascii.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/mod.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicase-2.7.0/src/unicode/map.rs:

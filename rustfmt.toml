@@ -1,0 +1,12 @@
+fn_params_layout = "Tall"
+match_arm_leading_pipes = "Always"
+max_width = 120
+merge_derives = true
+newline_style = "Unix"
+remove_nested_parens = true
+reorder_imports = true
+reorder_modules = true
+struct_lit_width = 20
+struct_variant_width = 20
+use_field_init_shorthand = true
+use_try_shorthand = true

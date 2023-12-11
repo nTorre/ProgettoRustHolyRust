@@ -1,0 +1,9 @@
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib/target/debug/deps/accesskit_winit-9a0dcd611d2e42af.rmeta: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/macos.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib/target/debug/deps/libaccesskit_winit-9a0dcd611d2e42af.rlib: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/macos.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib/target/debug/deps/accesskit_winit-9a0dcd611d2e42af.d: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/macos.rs
+
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/lib.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/mod.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/accesskit_winit-0.15.0/src/platform_impl/macos.rs:

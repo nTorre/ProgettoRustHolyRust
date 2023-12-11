@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib2/target/debug/build/mime_guess2-624d71ddd4ef80c5/out/mime_types_generated.rs

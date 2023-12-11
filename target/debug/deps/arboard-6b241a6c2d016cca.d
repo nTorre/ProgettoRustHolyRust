@@ -1,0 +1,10 @@
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib/target/debug/deps/arboard-6b241a6c2d016cca.rmeta: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/common.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/osx.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib/target/debug/deps/libarboard-6b241a6c2d016cca.rlib: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/common.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/osx.rs
+
+/Users/nicolastorriglia/Desktop/progettoAdvProg/Robotic-Lib/target/debug/deps/arboard-6b241a6c2d016cca.d: /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/lib.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/common.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/mod.rs /Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/osx.rs
+
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/lib.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/common.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/mod.rs:
+/Users/nicolastorriglia/.cargo/registry/src/index.crates.io-6f17d22bba15001f/arboard-3.3.0/src/platform/osx.rs:
