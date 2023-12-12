@@ -16,14 +16,17 @@ impl Node {
 
 use std::usize;
 
+/// Returns the cost of walking on the Tile.
+///
+/// If the Tile is not walkable, it returns a high number (100000)
 fn get_cost (tile: &Tile) -> usize {
     match &tile.tile_type {
         TileType::DeepWater | TileType::Lava | TileType::Wall => 100000,
         _ => tile.tile_type.properties().cost()
     }
 }
-
-fn is_wakable (tile: &Tile) ->bool {
+/// Returns a boolean corresponding to the attribute walk of Tile
+fn is_wakable (tile: &Tile) -> bool {
     match &tile.tile_type {
         TileType::DeepWater | TileType::Lava | TileType::Wall => {return false;}
         _ => true
@@ -31,12 +34,12 @@ fn is_wakable (tile: &Tile) ->bool {
 }
 
 
-
+/// Returns a vector of Node made by the neighbours of the tile given as a parameter in the function if they are walkable
 fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usize, tile: &Tile) -> Vec<Node> {
     let rows = matrix_tile.len();
     let cols = matrix_tile[0].len();
     let mut vec = vec![];
-
+    // Tile at bottom
     if (x as i32-1) >= 0 && (x as i32-1) < rows as i32 && (y) < cols {
         if is_wakable(&matrix_tile[x-1][y]) {
             if matrix_tile[x-1][y].elevation == 0 {
@@ -47,6 +50,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
             }
         }
     }
+    // Tile at right
     if (x) < rows && (y+1) < cols {
         if is_wakable(&matrix_tile[x][y+1]) {
             if matrix_tile[x][y+1].elevation == 0 {
@@ -57,6 +61,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
             }
         }
     }
+    // Tile at top
     if (x+1) < rows && (y) < cols {
         if is_wakable(&matrix_tile[x+1][y]) {
             if matrix_tile[x+1][y].elevation == 0 {
@@ -67,6 +72,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
             }
         }
     }
+    // Tile at left
     if (x) < rows && (y as i32-1) >= 0 && (y as i32-1) < cols as i32 {
         if is_wakable(&matrix_tile[x][y-1]) {}
         if matrix_tile[x][y-1].elevation == 0 {
@@ -78,7 +84,23 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
     }
     vec
 }
-
+/// Trasnform a matrix of Tile into a matrix of Node, where:
+///
+/// * `index` - Identify the label of the node
+/// * `weight` - Contain the cost of walking on that Tile
+///
+/// For example given a matrix of Tile:
+///
+/// |        |        |
+/// |------------|------------|
+/// | Sand       | DeepWater  |
+/// | Hill       | Grass      |
+/// |            |            |
+/// returns a matrix of Nodes where each node's labels (index) are assigned row by row starting from the top right corner, that is:
+/// * `Sand` => 0
+/// * `DeepWater` => 1
+/// * `Hill` => 2
+/// * `Grass` => 3
 fn change_matrix(matrix_tile: Vec<Vec<Tile>>) -> Vec<Vec<Node>> {
     let rows = matrix_tile.len();
     let cols = matrix_tile[0].len();
@@ -242,7 +264,7 @@ fn test_change_matrix() {
                 elevation: 0,
             },
             Tile {
-                tile_type: TileType::Lava,
+                tile_type: TileType::Hill,
                 content: Content::Fire,
                 elevation: 0,
             },

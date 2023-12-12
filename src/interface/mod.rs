@@ -19,20 +19,20 @@ use crate::world::tile::TileType::{DeepWater, ShallowWater, Teleport};
 use crate::world::tile::{Content, Tile, TileType};
 use crate::world::World;
 
-/// Represents the Tools
-/// The `Tools` trait is used to define the Tools.
+/// Represents the tools
+/// The `tools` trait is used to define the tools.
 ///
 /// # Usage
 /// ```rust
-/// use robotics_lib::interface::Tools;
+/// use robotics_lib::interface::tools;
 /// ```
 ///
 /// # Example
 /// ```rust
-/// use robotics_lib::interface::Tools;
+/// use robotics_lib::interface::tools;
 ///
 /// struct Tool;
-/// impl Tools for Tool {};
+/// impl tools for Tool {};
 /// ```
 
 pub trait Tools {}
