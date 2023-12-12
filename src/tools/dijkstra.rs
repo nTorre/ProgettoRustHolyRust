@@ -33,6 +33,14 @@ fn is_wakable (tile: &Tile) -> bool {
     }
 }
 
+/// Returns the cost of moving to a Tile with higher elevation
+fn get_cost_elevation (tile_arrive: &Tile, tile_start: &Tile) -> usize {
+    if tile_arrive.elevation <= tile_start.elevation {
+        return 0;
+    }
+    (tile_arrive.elevation - tile_start.elevation).pow(2)
+}
+
 
 /// Returns a vector of Node made by the neighbours of the tile given as a parameter in the function if they are walkable
 fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usize, tile: &Tile) -> Vec<Node> {
@@ -46,7 +54,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
                 vec.push(Node::new(value-cols,get_cost(&matrix_tile[x-1][y])));
             }
             else {
-                vec.push(Node::new(value-cols,get_cost(&matrix_tile[x-1][y]) + ((matrix_tile[x-1][y].elevation - tile.elevation) as i32).pow(2) as usize));
+                vec.push(Node::new(value-cols,get_cost(&matrix_tile[x-1][y]) + get_cost_elevation(&matrix_tile[x-1][y],tile)));
             }
         }
     }
@@ -57,7 +65,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
                 vec.push(Node::new(value+1,get_cost(&matrix_tile[x][y+1])));
             }
             else {
-                vec.push(Node::new(value+1,get_cost(&matrix_tile[x][y+1]) + ((&matrix_tile[x][y+1].elevation - tile.elevation) as i32).pow(2) as usize));
+                vec.push(Node::new(value+1,get_cost(&matrix_tile[x][y+1]) + get_cost_elevation(&matrix_tile[x][y+1],tile)));
             }
         }
     }
@@ -68,7 +76,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
                 vec.push(Node::new(value+cols,get_cost(&matrix_tile[x+1][y])));
             }
             else {
-                vec.push(Node::new(value+cols,get_cost(&matrix_tile[x+1][y]) + ((matrix_tile[x+1][y].elevation - tile.elevation) as i32).pow(2) as usize));
+                vec.push(Node::new(value+cols,get_cost(&matrix_tile[x+1][y]) + get_cost_elevation(&matrix_tile[x+1][y],tile)));
             }
         }
     }
@@ -79,7 +87,7 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
             vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1])));
         }
         else {
-            vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1]) + ((matrix_tile[x][y-1].elevation - tile.elevation) as i32).pow(2) as usize));
+            vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1]) + get_cost_elevation(&matrix_tile[x][y-1],tile)));
         }
     }
     vec
@@ -266,7 +274,7 @@ fn test_change_matrix() {
             Tile {
                 tile_type: TileType::Hill,
                 content: Content::Fire,
-                elevation: 0,
+                elevation: 3,
             },
         ],
         vec![
@@ -278,7 +286,7 @@ fn test_change_matrix() {
             Tile {
                 tile_type: TileType::Sand,
                 content: Content::Fire,
-                elevation: 0,
+                elevation: 2,
             },
         ],
         vec![
@@ -290,7 +298,7 @@ fn test_change_matrix() {
             Tile {
                 tile_type: TileType::Sand,
                 content: Content::Fire,
-                elevation: 0,
+                elevation: 2,
             },
         ],
     ];
