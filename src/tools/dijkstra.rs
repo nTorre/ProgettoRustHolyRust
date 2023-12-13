@@ -82,12 +82,13 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
     }
     // Tile at left
     if (x) < rows && (y as i32-1) >= 0 && (y as i32-1) < cols as i32 {
-        if is_wakable(&matrix_tile[x][y-1]) {}
-        if matrix_tile[x][y-1].elevation == 0 {
-            vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1])));
-        }
-        else {
-            vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1]) + get_cost_elevation(&matrix_tile[x][y-1],tile)));
+        if is_wakable(&matrix_tile[x][y-1]) {
+            if matrix_tile[x][y-1].elevation == 0 {
+                vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1])));
+            }
+            else {
+                vec.push(Node::new(value-1,get_cost(&matrix_tile[x][y-1]) + get_cost_elevation(&matrix_tile[x][y-1],tile)));
+            }
         }
     }
     vec
@@ -311,7 +312,7 @@ fn test_change_matrix() {
         ],
         vec![
             Tile {
-                tile_type: TileType::Grass,
+                tile_type: TileType::Hill,
                 content: Content::Fire,
                 elevation: 0,
             },
@@ -324,7 +325,7 @@ fn test_change_matrix() {
     ];
 
     // Utilizzo della funzione change_matrix per ottenere una matrice di Node
-    let (matrix_node, target_nodes) = change_matrix(matrix_tile, TileTypeOrContent::Content(Content::Fire));
+    let (matrix_node, target_nodes) = change_matrix(matrix_tile, TileTypeOrContent::TileType(TileType::Hill));
 
     // let rows = matrix_tile.len();
     // let cols = matrix_tile[0].len();
