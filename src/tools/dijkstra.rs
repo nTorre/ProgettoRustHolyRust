@@ -92,6 +92,11 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
     }
     vec
 }
+
+enum TileTypeOrContent {
+    TileType(TileType),
+    Content(Content)
+}
 /// Trasnform a matrix of Tile into a matrix of Node, where:
 ///
 /// * `index` - Identify the label of the node
@@ -109,15 +114,30 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
 /// * `DeepWater` => 1
 /// * `Hill` => 2
 /// * `Grass` => 3
-fn change_matrix(matrix_tile: Vec<Vec<Tile>>) -> Vec<Vec<Node>> {
+fn change_matrix(matrix_tile: Vec<Vec<Tile>>, tile_or_content: TileTypeOrContent) -> (Vec<Vec<Node>>, Vec<usize>) {
     let rows = matrix_tile.len();
     let cols = matrix_tile[0].len();
     let mut matrix_node = vec![vec![]; rows * cols];
     let mut label_node = 0;
 
+    let mut target_nodes = vec![];
+
     for (x,rows) in matrix_tile.iter().enumerate() {
         for (y,tile) in rows.iter().enumerate() {
-            if is_wakable(tile) {
+            let is_walkable = is_wakable(tile);
+            match &tile_or_content {
+                TileTypeOrContent::TileType(tile_type) => {
+                    if tile.tile_type == tile_type.clone() && is_walkable{
+                        target_nodes.push(label_node);
+                    }
+                },
+                TileTypeOrContent::Content(my_content) => {
+                    if tile.content == my_content.clone() && is_walkable{
+                        target_nodes.push(label_node);
+                    }
+                }
+            };
+            if is_walkable {
                 let neighbours = get_neighbours(&matrix_tile,x,y,label_node, &tile);
                 for i in neighbours {
                     matrix_node[label_node].push(i);
@@ -126,7 +146,7 @@ fn change_matrix(matrix_tile: Vec<Vec<Tile>>) -> Vec<Vec<Node>> {
             label_node += 1;
         }
     }
-    matrix_node
+    (matrix_node,target_nodes)
 }
 
 ////////////////////////////////////////////////////
@@ -268,30 +288,30 @@ fn test_change_matrix() {
         vec![
             Tile {
                 tile_type: TileType::Grass,
-                content: Content::Fire,
+                content: Content::Building,
                 elevation: 0,
             },
             Tile {
                 tile_type: TileType::Hill,
-                content: Content::Fire,
+                content: Content::Building,
                 elevation: 3,
             },
         ],
         vec![
             Tile {
                 tile_type: TileType::DeepWater,
-                content: Content::Fire,
+                content: Content::Building,
                 elevation: 0,
             },
             Tile {
                 tile_type: TileType::Sand,
-                content: Content::Fire,
+                content: Content::Building,
                 elevation: 2,
             },
         ],
         vec![
             Tile {
-                tile_type: TileType::Hill,
+                tile_type: TileType::Grass,
                 content: Content::Fire,
                 elevation: 0,
             },
@@ -304,7 +324,7 @@ fn test_change_matrix() {
     ];
 
     // Utilizzo della funzione change_matrix per ottenere una matrice di Node
-    let matrix_node = change_matrix(matrix_tile);
+    let (matrix_node, target_nodes) = change_matrix(matrix_tile, TileTypeOrContent::Content(Content::Fire));
 
     // let rows = matrix_tile.len();
     // let cols = matrix_tile[0].len();
@@ -327,7 +347,7 @@ fn test_change_matrix() {
     println!("/////////////////////////////////////");
 
     let start_node = 0;
-    let target_nodes = vec![5];
+    //let target_nodes = vec![5];
 
     let results = find_shortest_paths(&matrix_node, start_node, &target_nodes);
 
