@@ -30,6 +30,7 @@ mod interface_tests;
 mod runner_test;
 mod utils_test;
 mod world_tests;
+mod tool_test;
 
 // Structs and function implementation shared in more than one test
 struct TestRobot(Robot);
