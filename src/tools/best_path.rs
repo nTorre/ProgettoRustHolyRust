@@ -6,20 +6,47 @@ use crate::world::tile::{Tile, TileType};
 use prettytable::{Table, Row, Cell};
 use crate::utils::LibError;
 use crate::interface::Direction;
+use std::collections::{BinaryHeap};
+use std::cmp::Ordering;
 
+
+const INF: i32 = std::i32::MAX;
+
+// struct per salvare i nodi nel grafo delle adiacenze
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Node {
     index: usize,
     distance: usize,
 }
 
+// implemento new per il nodo
 impl Node {
     fn new(index: usize, weight: usize) -> Node {
         Node { index: index, distance: weight }
     }
 }
 
-pub fn discover_tiles(
+#[derive(Debug)]
+pub struct PathResult {
+    pub path: Option<Vec<usize>>,
+    pub target_node: usize,
+    pub total_cost: i32,
+}
+
+impl Ord for Node {
+    fn cmp(&self, other: &Self) -> Ordering {
+        other.distance.cmp(&self.distance)
+    }
+}
+
+impl PartialOrd for Node {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+// simulazione funzione discover tiles del wg
+fn discover_tiles(
     to_discover: &[(usize, usize)],
 ) -> Result<HashMap<(usize, usize), Option<Tile>>, LibError>{
 
@@ -34,6 +61,7 @@ pub fn discover_tiles(
 
 }
 
+// funzione per convertire il vettore dei tiles in una matrice + parte riempitiva
 fn from_vec_to_matrix(nodi_conosciuti: &Vec<((i32, i32), Tile)>, discover: bool)->Vec<Vec<Tile>>{
     // se discover == true, riempio la matrice con le discover
     let Some(((mut min_x, mut min_y), _)) = nodi_conosciuti.get(0) else { panic!("Ma figa") };
@@ -70,6 +98,7 @@ fn from_vec_to_matrix(nodi_conosciuti: &Vec<((i32, i32), Tile)>, discover: bool)
     for nodo in nodi_conosciuti{
         let ((x, y), tile) = nodo;
         matrix[(y-min_y) as usize][(x-min_x) as usize] = tile.clone();
+        mask_matrix[(y-min_y) as usize][(x-min_x) as usize].0 = tile.clone();
         mask_matrix[(y-min_y) as usize][(x-min_x) as usize].1 = true;
     }
 
@@ -99,6 +128,7 @@ fn from_vec_to_matrix(nodi_conosciuti: &Vec<((i32, i32), Tile)>, discover: bool)
                     n_discover+=1;
                     let coordinates = [(i,j)];
                     new_row.push((discover_tiles(&coordinates).unwrap().get(&(i,j)).unwrap().clone().unwrap(), true));
+                    // TODO: savare i tile scoperti e ritornarli all'utente
                 } else{
                     new_row.push((max_val.unwrap(), false));
                 }
@@ -122,6 +152,7 @@ fn from_vec_to_matrix(nodi_conosciuti: &Vec<((i32, i32), Tile)>, discover: bool)
     return to_ret;
 }
 
+// funzione per ritornare il costo più alto delle tiles adiacenti
 fn find_max_in_tuple(tuple: (Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>)) -> Option<Tile> {
     // Controlla se tutti gli elementi sono None
     if tuple.0.is_none() &&
@@ -136,9 +167,6 @@ fn find_max_in_tuple(tuple: (Option<Tile>, Option<Tile>, Option<Tile>, Option<Ti
     }
 
     // Inizializza il massimo con il primo valore Some o None se tutti sono None
-    let mut max_value: usize = 0;
-
-
 
     let mut max_cost_tile: Option<Tile> = None;
     let mut max_cost = 0;
@@ -156,6 +184,7 @@ fn find_max_in_tuple(tuple: (Option<Tile>, Option<Tile>, Option<Tile>, Option<Ti
 }
 
 
+// recupero dalla matrice i nodi adiacenti
 fn show_neighbor(matrix: &Vec<Vec<(Tile, bool)>>, x: i32, y: i32)->(Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>, Option<Tile>,  Option<Tile>,  Option<Tile>){
 
     let a = scan_matrix(matrix,x-1, y-1);
@@ -171,6 +200,7 @@ fn show_neighbor(matrix: &Vec<Vec<(Tile, bool)>>, x: i32, y: i32)->(Option<Tile>
 
 }
 
+// recupero dalla matrice i tiles specificati dalla coordinata
 fn scan_matrix(matrix: &Vec<Vec<(Tile, bool)>>, x: i32, y: i32)->Option<Tile>{
     if let Some(row) = matrix.get(x as usize){
         let tile = row.get(y as usize);
@@ -187,7 +217,7 @@ fn scan_matrix(matrix: &Vec<Vec<(Tile, bool)>>, x: i32, y: i32)->Option<Tile>{
 }
 
 
-
+// passo da matrice a grafo
 fn change_matrix(matrix_tile: Vec<Vec<Tile>>, nodi_dinteresse: Vec<(i32, i32)>) -> (Vec<Vec<Node>>, Vec<usize>) {
     let rows = matrix_tile.len();
     let cols = matrix_tile[0].len();
@@ -295,12 +325,18 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
 }
 
 // prendo in input una lista di nodi conosciuti e restituisco la matrice + lista nodi con index
-fn shortest_path(nodi_conosciuti: &Vec<((i32, i32), Tile)>, nodi_interesse: Vec<(i32, i32)>, discover: bool)->Vec<PathResult> {
+pub fn shortest_path(nodi_conosciuti: &Vec<((i32, i32), Tile)>, nodi_interesse: Vec<(i32, i32)>, discover: bool)->Vec<PathResult> {
     let matrix = from_vec_to_matrix(nodi_conosciuti, discover);
     print_matrix(&matrix);
-    let (matrix2,targets)=change_matrix(matrix.clone(), nodi_interesse);
-    print_matrix(&matrix2);
-    find_shortest_paths(&matrix2, 1, &targets)
+    let (matrix_node,target_nodes)=change_matrix(matrix.clone(), nodi_interesse);
+    let start_node = 30;
+    //let target_nodes = vec![5];
+
+    let results = find_shortest_paths(&matrix_node, start_node, &target_nodes);
+
+
+
+    return results;
 }
 
 fn print_matrix<T: Debug>(matrix: &Vec<Vec<T>>) {
@@ -323,58 +359,7 @@ fn print_matrix<T: Debug>(matrix: &Vec<Vec<T>>) {
     table.printstd();
 }
 
-#[test]
-fn test_build_matrix(){
-    let tile1 = Tile{tile_type: TileType::Grass, content: Content::Bush(0), elevation: 2};
-    let mut nodi_conosciuti: Vec<((i32, i32), Tile)> = vec![];
-    nodi_conosciuti.push(((0, 0), tile1.clone()));
-    nodi_conosciuti.push(((1, 0), tile1.clone()));
-    nodi_conosciuti.push(((2, 0), tile1.clone()));
-    /*nodi_conosciuti.push(((3, 0), tile1.clone()));
-    nodi_conosciuti.push(((4, 0), tile1.clone()));
-    nodi_conosciuti.push(((5, 0), tile1.clone()));
-    nodi_conosciuti.push(((6, 0), tile1.clone()));
-    nodi_conosciuti.push(((1, 2), tile1.clone()));
-    nodi_conosciuti.push(((2, 2), tile1.clone()));
-    nodi_conosciuti.push(((3, 3), tile1.clone()));*/
-    nodi_conosciuti.push(((9, 9), tile1.clone()));
 
-    let mut nodi_dinteresse: Vec<(i32, i32)> = vec![];
-    nodi_dinteresse.push((8,8));
-
-    println!("{:?}", shortest_path(&nodi_conosciuti, nodi_dinteresse, true));
-}
-
-
-
-
-/////////
-
-
-use std::collections::{BinaryHeap};
-use std::cmp::Ordering;
-
-const INF: i32 = std::i32::MAX;
-
-
-#[derive(Debug)]
-pub struct PathResult {
-    pub path: Option<Vec<usize>>,
-    pub target_node: usize,
-    pub total_cost: i32,
-}
-
-impl Ord for Node {
-    fn cmp(&self, other: &Self) -> Ordering {
-        other.distance.cmp(&self.distance)
-    }
-}
-
-impl PartialOrd for Node {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
-    }
-}
 
 
 /// Performs Dijkstra's algorithm to find the shortest paths from the start node to all other nodes in the graph.
@@ -455,7 +440,7 @@ fn reconstruct_shortest_path(predecessor: Vec<Option<usize>>, target: usize) -> 
 /// # Returns
 ///
 /// A vector of `PathResult` structs, each one representing a target node, its respective shortest path, and total cost.
-pub fn find_shortest_paths(graph: &Vec<Vec<Node>>, start: usize, target_nodes: &Vec<usize>) -> Vec<PathResult> {
+fn find_shortest_paths(graph: &Vec<Vec<Node>>, start: usize, target_nodes: &Vec<usize>) -> Vec<PathResult> {
     let (shortest_distances, predecessors) = dijkstra(graph, start);
     let mut results = Vec::new();
 
@@ -498,7 +483,7 @@ pub fn find_shortest_paths(graph: &Vec<Vec<Node>>, start: usize, target_nodes: &
 ///
 /// Restituisce un errore se si verifica un problema durante il calcolo dei percorsi o la conversione delle coordinate in direzioni.
 ///
-pub fn build_path(graph: &Vec<Vec<Node>>, mut start: usize, mut target_nodes: Vec<usize>, coordinates:&HashMap<usize, (usize,usize)>)
+fn build_path(graph: &Vec<Vec<Node>>, mut start: usize, mut target_nodes: Vec<usize>, coordinates:&HashMap<usize, (usize,usize)>)
                   -> Result<Vec<Vec<Direction>>, &'static str> {
     let mut final_path: Vec<Vec<Direction>> = Vec::new();
 
@@ -581,7 +566,7 @@ fn path_to_directions(coordinates: &HashMap<usize, (usize, usize)>, path: &Vec<u
 ///
 /// Un vettore contenente gli indici dei nodi connessi che sono anche nei nodi di destinazione.
 ///
-pub fn find_connected_targets(graph: &Vec<Vec<Node>>, start: usize, targets: &Vec<usize>) -> Vec<usize> {
+fn find_connected_targets(graph: &Vec<Vec<Node>>, start: usize, targets: &Vec<usize>) -> Vec<usize> {
     let mut connected_targets = Vec::new();
     let mut heap = BinaryHeap::new();
     let mut visited = vec![false; graph.len()];
@@ -621,7 +606,7 @@ pub fn find_connected_targets(graph: &Vec<Vec<Node>>, start: usize, targets: &Ve
 ///
 /// Una mappa contenente gli indici degli elementi nella matrice come chiavi e le rispettive coordinate (riga, colonna) come valori.
 ///
-pub fn get_coordinates(matrix: &Vec<Vec<Tile>>) -> HashMap<usize, (usize, usize)>{
+fn get_coordinates(matrix: &Vec<Vec<Tile>>) -> HashMap<usize, (usize, usize)>{
     let mut hm = HashMap::new();
     let mut current_index = 0;
 
@@ -632,4 +617,27 @@ pub fn get_coordinates(matrix: &Vec<Vec<Tile>>) -> HashMap<usize, (usize, usize)
         }
     }
     hm
+}
+
+
+#[test]
+fn test_build_matrix(){
+    let tile1 = Tile{tile_type: TileType::Grass, content: Content::Bush(0), elevation: 2};
+    let mut nodi_conosciuti: Vec<((i32, i32), Tile)> = vec![];
+    nodi_conosciuti.push(((0, 0), tile1.clone()));
+    nodi_conosciuti.push(((1, 0), tile1.clone()));
+    nodi_conosciuti.push(((2, 0), tile1.clone()));
+    /*nodi_conosciuti.push(((3, 0), tile1.clone()));
+    nodi_conosciuti.push(((4, 0), tile1.clone()));
+    nodi_conosciuti.push(((5, 0), tile1.clone()));
+    nodi_conosciuti.push(((6, 0), tile1.clone()));
+    nodi_conosciuti.push(((1, 2), tile1.clone()));
+    nodi_conosciuti.push(((2, 2), tile1.clone()));
+    nodi_conosciuti.push(((3, 3), tile1.clone()));*/
+    nodi_conosciuti.push(((9, 9), tile1.clone()));
+
+    let mut nodi_dinteresse: Vec<(i32, i32)> = vec![];
+    nodi_dinteresse.push((8,8));
+
+    println!("{:?}", shortest_path(&nodi_conosciuti, nodi_dinteresse, true));
 }
