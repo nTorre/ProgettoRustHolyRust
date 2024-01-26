@@ -1,6 +1,7 @@
 use std::vec::Vec;
 use crate::world::tile::Content;
 use crate::world::tile::{Tile, TileType};
+use std::usize;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 struct Node {
@@ -14,7 +15,11 @@ impl Node {
     }
 }
 
-use std::usize;
+enum TileTypeOrContent {
+    TileType(TileType),
+    Content(Content)
+}
+
 
 /// Returns the cost of walking on the Tile.
 ///
@@ -94,16 +99,13 @@ fn get_neighbours (matrix_tile: &Vec<Vec<Tile>>, x: usize, y: usize, value: usiz
     vec
 }
 
-enum TileTypeOrContent {
-    TileType(TileType),
-    Content(Content)
-}
-/// Trasnform a matrix of Tile into a matrix of Node, where:
+
+/// Transforms a matrix of TileType (or Content) into a matrix of Node, where:
 ///
 /// * `index` - Identify the label of the node
 /// * `weight` - Contain the cost of walking on that Tile
 ///
-/// For example given a matrix of Tile:
+/// For example given a matrix of TileType:
 ///
 /// |        |        |
 /// |------------|------------|
@@ -279,6 +281,52 @@ fn find_shortest_paths(graph: &Vec<Vec<Node>>, start: usize, target_nodes: &Vec<
 }
 
 
+/// Prints the matrix of Node.
+///
+/// # Arguments
+///
+/// * `matrix_node` - The matrix of Node represented as a vector of vectors of Node.
+/// * `start_node` - The index of the starting node.
+/// * `target_nodes` - A vector of indices representing the target nodes.
+fn print_result(matrix_node: &Vec<Vec<Node>>, start_node: usize, target_nodes: &Vec<usize>) {
+    // Printing the matrix of Node
+    for (i,v) in matrix_node.iter().enumerate() {
+        println!("Node {}: {:?}", i, v);
+    }
+    println!("/////////////////////////////////////");
+
+    let results = find_shortest_paths(&matrix_node, start_node, &target_nodes);
+
+    for result in results {
+        if let Some(path) = result.path {
+            println!("Shortest path from node {} to node {}: {:?}", start_node, result.target_node, path);
+            println!("Total cost: {}", result.total_cost);
+        } else {
+            println!("No path from node {} to node {}", start_node, result.target_node);
+        }
+    }
+}
+
+
+/// Searches for target nodes (either TileType or Content) in a matrix of tiles and finds the shortest paths from the start node to the target nodes.
+///
+/// # Arguments
+///
+/// * `matrix_tile` - A matrix of tiles represented as a vector of vectors.
+/// * `tile_type_or_content` - An enum value indicating whether to search by tile type or tile content.
+/// * `start_node` - The index of the start node.
+///
+/// # Returns
+///
+/// A vector of `PathResult` structs, each representing a target node, its shortest path, and total cost.
+fn search_and_go(matrix_tile: Vec<Vec<Tile>>, tile_type_or_content: TileTypeOrContent, start_node: usize) -> Vec<PathResult>{
+    let (matrix_node, target_nodes) = change_matrix(matrix_tile, tile_type_or_content);
+
+    print_result(&matrix_node, start_node, &target_nodes);
+
+    return find_shortest_paths(&matrix_node, start_node, &target_nodes);
+}
+
 
 /////////////////////////////////////////////////////
 
@@ -324,40 +372,8 @@ fn test_change_matrix() {
         ],
     ];
 
-    // Utilizzo della funzione change_matrix per ottenere una matrice di Node
-    let (matrix_node, target_nodes) = change_matrix(matrix_tile, TileTypeOrContent::TileType(TileType::Hill));
-
-    // let rows = matrix_tile.len();
-    // let cols = matrix_tile[0].len();
-    // let mut matrix_node = vec![vec![]; rows * 2];
-    //
-    // matrix_node[0].push(Node::new(1,3));
-    // matrix_node[0].push(Node::new(2,5));
-    // matrix_node[1].push(Node::new(0,1));
-    // matrix_node[1].push(Node::new(3,usize::MAX));
-    // matrix_node[2].push(Node::new(0,1));
-    // matrix_node[2].push(Node::new(3,usize::MAX));
-    // matrix_node[3].push(Node::new(2,5));
-    // matrix_node[3].push(Node::new(1,3));
-
-    // Stampa della matrice di Node
-    for (i,v) in matrix_node.iter().enumerate() {
-        println!("Node {}: {:?}",i,v);
-    }
-
-    println!("/////////////////////////////////////");
-
     let start_node = 0;
-    //let target_nodes = vec![5];
 
-    let results = find_shortest_paths(&matrix_node, start_node, &target_nodes);
-
-    for result in results {
-        if let Some(path) = result.path {
-            println!("Shortest path from node {} to node {}: {:?}", start_node, result.target_node, path);
-            println!("Total cost: {}", result.total_cost);
-        } else {
-            println!("No path from node {} to node {}", start_node, result.target_node);
-        }
-    }
+    search_and_go(matrix_tile, TileTypeOrContent::TileType(TileType::Hill), start_node);
 }
+
