@@ -1,6 +1,6 @@
 use super::*;
 use crate::tools::dijkstra::*;
-
+use crate::tools::search_and_go::*;
 #[test]
 fn test_change_matrix() {
     // Creazione di una matrice di Tile per test
@@ -43,43 +43,11 @@ fn test_change_matrix() {
         ],
     ];
 
-    // Utilizzo della funzione change_matrix per ottenere una matrice di Node
-    let (matrix_node, target_nodes) = change_matrix(matrix_tile, TileTypeOrContent::TileType(TileType::Hill));
-
-    // let rows = matrix_tile.len();
-    // let cols = matrix_tile[0].len();
-    // let mut matrix_node = vec![vec![]; rows * 2];
-    //
-    // matrix_node[0].push(Node::new(1,3));
-    // matrix_node[0].push(Node::new(2,5));
-    // matrix_node[1].push(Node::new(0,1));
-    // matrix_node[1].push(Node::new(3,usize::MAX));
-    // matrix_node[2].push(Node::new(0,1));
-    // matrix_node[2].push(Node::new(3,usize::MAX));
-    // matrix_node[3].push(Node::new(2,5));
-    // matrix_node[3].push(Node::new(1,3));
-
-    // Stampa della matrice di Node
-    for (i,v) in matrix_node.iter().enumerate() {
-        println!("Node {}: {:?}",i,v);
-    }
-
-    println!("/////////////////////////////////////");
-
     let start_node = 0;
-    //let target_nodes = vec![5];
 
-    let results = find_shortest_paths(&matrix_node, start_node, &target_nodes);
-
-    for result in results {
-        if let Some(path) = result.path {
-            println!("Shortest path from node {} to node {}: {:?}", start_node, result.target_node, path);
-            println!("Total cost: {}", result.total_cost);
-        } else {
-            println!("No path from node {} to node {}", start_node, result.target_node);
-        }
-    }
+    search_and_go(matrix_tile, crate::tools::search_and_go::TileTypeOrContent::TileType(TileType::Hill), start_node);
 }
+
 
 
 /*PIETRO VERONA*/
@@ -142,7 +110,7 @@ fn build_path_test() {
 
     let coordinates = get_coordinates(&matrix_tile);
 
-    let (matrix_node, target_nodes) = change_matrix(matrix_tile, TileTypeOrContent::TileType(TileType::Hill));
+    let (matrix_node, target_nodes) = change_matrix(matrix_tile, crate::tools::dijkstra::TileTypeOrContent::TileType(TileType::Hill));
 
     for (i,v) in matrix_node.iter().enumerate() {
         println!("Node {}: {:?}",i,v);
