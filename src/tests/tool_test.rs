@@ -1,6 +1,6 @@
 use super::*;
 use crate::tools::dijkstra::*;
-use crate::tools::search_and_go::*;
+use crate::tools::search_and_go::search_and_go;
 #[test]
 fn test_change_matrix() {
     // Creazione di una matrice di Tile per test
